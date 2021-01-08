@@ -1,9 +1,8 @@
 # `pycoast` — Python wrapper for **CO**rsika data **A**cces**S** **T**ools ([COAST](https://web.ikp.kit.edu/rulrich/coast.html))
 
-
 Reading CORSIKA runs, showers and particles data from `DATnnnnnn` binary files.
 
-SWIG-generated interface plus custom wrapping classes for nice pythonic code.
+Uses [SWIG](http://www.swig.org/)-generated interface for C++ classes wrapped in custom Python classes for nice idiomatic code.
 
 
 ## Installation

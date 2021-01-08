@@ -12,22 +12,81 @@ from . import coast_wrapper
 
 
 class CorsikaReader:
-    """Wrapper around MCorsikaReader (C++ class) interfaced by SWIG"""
-
-    def __init__(self, filename: str, verbosity: int=0):
+    def __init__(self, filename: str, verbosity: int = 0):
+        self.filename = filename
         self._reader = coast_wrapper.MCorsikaReader(filename, verbosity)
-        self._current_run = coast_wrapper.MRunHeader()
+
+    def __str__(self) -> str:
+        return f"Corsika Reader for {self.filename}"
 
     def runs(self) -> Generator[_CorsikaRun, None, None]:
+        self._current_run = coast_wrapper.MRunHeader()
         while self._reader.GetRun(self._current_run):
-            yield _CorsikaRun(self._current_run)
+            # in C++ code it's OK to place new value in the same MRunHeader variable each time,
+            # but in Python it seems logical to return new _CorsikaRun wrapping actual run header
+            # every time
+            yield _CorsikaRun(self._current_run, self)
 
 
 class _CorsikaRun:
-    def __init__(self, run: coast_wrapper.MRunHeader):
+    def __init__(self, run: coast_wrapper.MRunHeader, parent_reader: CorsikaReader):
+        self._parent_reader = parent_reader
         self._run = run
         self.id = self._run.GetRunID()
 
     def __str__(self) -> str:
         # for some reason GetRunID returns float, turn it to int for prettiness
         return f'Run {int(self.id)}'
+
+    def showers(self) -> Generator[_CorsikaShower, None, None]:
+        self._current_shower = coast_wrapper.MEventHeader()
+        while self._parent_reader._reader.GetShower(self._current_shower):
+            yield _CorsikaShower(self._current_shower, self._parent_reader)
+
+
+class _CorsikaShower:
+    def __init__(self, shower: coast_wrapper.MEventHeader, parent_reader: CorsikaReader):
+        self._parent_reader = parent_reader
+        self._shower = shower
+        self.number = self._shower.GetEventNumber()
+        n_obs_levels = self._shower.GetNObservationLevels()
+        self.observation_levels = []
+        for i in range(n_obs_levels):
+            self.observation_levels.append(self._shower.GetObservationHeight(i))
+
+        self.theta = self._shower.GetTheta()
+        self.phi = self._shower.GetPhi()
+        self.z_first = self._shower.GetZFirst()
+
+    def __str__(self) -> str:
+        return (
+            f"Shower {self.number}, "
+            + f"theta={self.theta}, phi={self.phi}, z first={self.z_first}, "
+            + f"observed at {', '.join(str(l) for l in self.observation_levels)}"
+        )
+
+    def subblocks(self) -> Generator[_CorsikaSubBlock, None, None]:
+        self._current_block = coast_wrapper.TSubBlock()
+        while self._parent_reader._reader.GetData(self._current_block):
+            yield _CorsikaSubBlock(self._current_block)
+
+
+class _CorsikaSubBlock:
+    def __init__(self, block: coast_wrapper.TSubBlock):
+        self._block = block
+        self.type = block.GetBlockType()
+
+    @property
+    def is_particle_data(self):
+        return self.type == coast_wrapper.TSubBlock.ePARTDATA
+
+    def particles(self) -> Generator[_CorsikaParticle, None, None]:
+        if not self.is_particle_data:
+            return None
+        particle_block = coast_wrapper.MParticleBlock(self._block)
+        particle_block.FirstParticle()
+
+
+class _CorsikaParticle:
+    def __init__(self, _particle):
+        pass

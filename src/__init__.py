@@ -6,7 +6,7 @@ They only incapsulate the most basic properties for now, but are easily extendab
 
 from __future__ import annotations
 
-from typing import Generator
+from typing import Generator, List
 
 from . import coast_wrapper
 
@@ -80,13 +80,15 @@ class _CorsikaSubBlock:
     def is_particle_data(self):
         return self.type == coast_wrapper.TSubBlock.ePARTDATA
 
-    def particles(self) -> Generator[_CorsikaParticle, None, None]:
+    def particle_coords(self) -> List[_CorsikaParticleCoords]:
         if not self.is_particle_data:
             return None
-        particle_block = coast_wrapper.MParticleBlock(self._block)
-        particle_block.FirstParticle()
+        return [_CorsikaParticleCoords(pc) for pc in coast_wrapper.getParticleCoordsList(self._block)]
 
 
-class _CorsikaParticle:
-    def __init__(self, _particle):
-        pass
+class _CorsikaParticleCoords:
+    def __init__(self, particle_coords: coast_wrapper.ParticleCoords):
+        self._particle_coords = particle_coords
+
+    def __str__(self) -> str:
+        return f"type={self._particle_coords.type}, x={self._particle_coords.x}, y={self._particle_coords.y}"

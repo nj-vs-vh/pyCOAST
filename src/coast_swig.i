@@ -12,6 +12,8 @@
 #include <crs/MParticleBlock.h>
 #include <crs/MLongitudinalBlock.h>
 #include <crs/MParticle.h>
+
+#include <custom_accessors.cpp>
 %}
 
 %include std_string.i
@@ -29,30 +31,10 @@
 
 %include <crs/TParticleBlockEntry.h>
 
-%include <crs/MParticleBlock.h>
-typedef std::vector <TParticleBlockEntry> ParticleList;
-typedef ParticleList::iterator ParticleListIterator;
-typedef ParticleList::const_iterator ParticleListConstIterator;
-
-// class ParticleList {
-	
-//     public:
-//     typedef std::vector <TParticleBlockEntry> ParticleList;
-//     typedef ParticleList::iterator ParticleListIterator;
-//     typedef ParticleList::const_iterator ParticleListConstIterator;
-
-//     MParticleBlock () {}
-//     MParticleBlock (const TSubBlock &right);
-//     virtual ~MParticleBlock () {}
-
-//     ParticleListConstIterator FirstParticle () const 
-//     {return fParticles.begin ();}
-//     ParticleListConstIterator LastParticle () const 
-//     {return fParticles.end ();}
-//     ParticleList fParticles;
-// };
-
 %include <crs/MLongitudinalBlock.h>
 
 %include <crs/IParticleReadout.h>
 %include <crs/MParticle.h>
+
+%template (ParticleCoordsList) std::vector <ParticleCoords>;
+%include <custom_accessors.cpp>

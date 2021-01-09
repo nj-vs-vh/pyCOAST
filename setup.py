@@ -1,18 +1,18 @@
-from setuptools import Extension, setup, find_packages
+from setuptools import Extension, setup
 import os
 
 
 coast_dir = os.environ['COAST_DIR']
-include_flags = f'-I{coast_dir}/include'
+include_flags = [f'-I{coast_dir}/include', '-Isrc']
 
 
 pycoast_ext = Extension(
     "pycoast._coast_wrapper",
     sources=['src/coast_wrapper_ext/coast_swig_wrap.cpp'],
-    swig_opts=[include_flags],
+    swig_opts=include_flags,
     library_dirs=[coast_dir + '/lib'],
     libraries=['CorsikaFileIO', 'CorsikaIntern'],
-    extra_compile_args=[include_flags],
+    extra_compile_args=include_flags,
 )
 
 

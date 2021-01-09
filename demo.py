@@ -10,6 +10,7 @@ for run in reader.runs():
     for shower in run.showers():
         print(shower)
         for i, block in enumerate(shower.subblocks()):
-            block.particles()
+            for pc in block.particle_coords():
+                print(pc)
             if i > 20:
                 break

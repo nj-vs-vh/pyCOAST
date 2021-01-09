@@ -19,6 +19,7 @@ Uses [SWIG](http://www.swig.org/)-generated interface for C++ classes wrapped in
 
    3. Run following commands from COAST dir
    ```bash
+   ./configure
    make
    make check
    ```

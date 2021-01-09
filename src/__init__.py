@@ -70,6 +70,11 @@ class _CorsikaShower:
         while self._parent_reader._reader.GetData(self._current_block):
             yield _CorsikaSubBlock(self._current_block)
 
+    def particle_coords(self) -> Generator[_CorsikaParticleCoords, None, None]:
+        for block in self.subblocks():
+            for particle_coords in block.particle_coords():
+                yield particle_coords
+
 
 class _CorsikaSubBlock:
     def __init__(self, block: coast_wrapper.TSubBlock):

@@ -9,8 +9,24 @@ for run in reader.runs():
     print(run)
     for shower in run.showers():
         print(shower)
+        # explicitly reading block-by-block
         for i, block in enumerate(shower.subblocks()):
             for pc in block.particle_coords():
                 print(pc)
-            if i > 20:
+            if i >= 20:
+                break
+
+del reader
+
+reader = pycoast.CorsikaReader(DAT_FILE, verbosity=3)
+
+for run in reader.runs():
+    print(run)
+    for shower in run.showers():
+        print(shower)
+        # reading all particle from shower
+        for i, pc in enumerate(shower.particle_coords()):
+            print(i, "\t", pc)
+            # your processing here
+            if i >= 20:
                 break

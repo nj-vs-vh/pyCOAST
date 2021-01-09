@@ -22,6 +22,7 @@ Uses [SWIG](http://www.swig.org/)-generated interface for C++ classes wrapped in
    ./configure
    make
    make check
+   make install
    ```
 
 2. Clone this repository

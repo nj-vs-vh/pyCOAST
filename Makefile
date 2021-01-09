@@ -12,8 +12,12 @@ prepare_swig_dirs:
 	mkdir -p ${SWIG_PYFILES}
 
 
-install: prepare_swig_dirs
+install-full:
 	swig -c++ -python -outdir ${SWIG_PYFILES} -o ${SWIG_CPPFILES}/coast_swig_wrap.cpp ${SWIG_INCLUDE} src/coast_swig.i
+	python setup.py install
+
+
+install: prepare_swig_dirs
 	python setup.py install
 
 

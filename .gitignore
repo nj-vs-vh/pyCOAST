@@ -175,5 +175,3 @@ dmypy.json
 
 coastenv
 examples
-src/coast_wrapper.py
-src/coast_wrapper_ext

@@ -27,6 +27,12 @@ Uses [SWIG](http://www.swig.org/)-generated interface for C++ classes wrapped in
 
 2. Clone this repository
 3. Create Python virtual environment (for example, `python3 -m venv coastenv`)
-4. Modify `coast-setup.sh` script to include your specific `COAST_DIR` and place `source /path/to/coast-setup.sh` in virtual environment activation script (e.g. `coastenv/bin/activate`) or in `.bashrc`
+4. Add following lines with your COAST dir path in virtual environment activation script (e.g. `coastenv/bin/activate`) or in `.bashrc`
+
+```bash
+export COAST_DIR=/my/coast/build
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COAST_DIR/lib
+```
+
 5. Run `make install`
 6. Run `demo.py` to make sure `pycoast` works

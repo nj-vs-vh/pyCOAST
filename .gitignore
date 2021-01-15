@@ -175,6 +175,7 @@ dmypy.json
 
 coastenv
 examples
+data
 coast-setup.sh
 
 # SWIG-generated files are built with make install

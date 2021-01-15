@@ -13,7 +13,7 @@ for run in reader.runs():
         for i, block in enumerate(shower.subblocks()):
             for pc in block.particle_coords():
                 print(pc)
-            if i >= 20:
+            if i >= 3:
                 break
 
 del reader
@@ -27,6 +27,5 @@ for run in reader.runs():
         # reading all particle from shower
         for i, pc in enumerate(shower.particle_coords()):
             print(i, "\t", pc)
-            # your processing here
             if i >= 20:
                 break

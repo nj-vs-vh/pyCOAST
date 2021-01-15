@@ -93,7 +93,9 @@ class _CorsikaSubBlock:
 
 class _CorsikaParticleCoords:
     def __init__(self, particle_coords: coast_wrapper.ParticleCoords):
-        self._particle_coords = particle_coords
+        self.id = particle_coords.id
+        self.x = particle_coords.x
+        self.y = particle_coords.y
 
     def __str__(self) -> str:
-        return f"type={self._particle_coords.type}, x={self._particle_coords.x}, y={self._particle_coords.y}"
+        return f"type={self.id}, x={self.x}, y={self.y}"

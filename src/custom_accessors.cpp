@@ -10,7 +10,7 @@
 
 
 struct ParticleCoords {
-    crs::ParticleType type;
+    int id;
     float x, y;
 };
 
@@ -26,7 +26,9 @@ ParticleCoordsList getParticleCoordsList(crs::TSubBlock * Data) {
     for (iEntry = ParticleData.FirstParticle(); iEntry != ParticleData.LastParticle(); ++iEntry) {
         if (iEntry->IsParticle()) {
             crs::MParticle particle = *iEntry;
-            result.push_back((ParticleCoords){.type = particle.GetType(), .x = particle.GetX(), .y = particle.GetY()});
+            if (particle.GetType() == crs::ParticleType::eParticle) {
+                result.push_back((ParticleCoords){.id = particle.GetParticleID(), .x = particle.GetX(), .y = particle.GetY()});
+            }
         }
     }
 

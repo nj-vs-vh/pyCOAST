@@ -4,8 +4,7 @@ import termplotlib as tpl
 
 from pycoast import CorsikaReader
 
-# DAT_FILES_DIR = Path('/storage/vol4/ksenia/CORSIKA_LIBRARY/PHOTONS')
-DAT_FILES_DIR = Path('/home/njvh')
+DAT_FILES_DIR = Path('./data')
 
 
 thetas = []

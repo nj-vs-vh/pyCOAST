@@ -184,3 +184,4 @@ src/coast_wrapper.py
 src/coast_wrapper_ext/coast_swig_wrap.cpp
 
 *.out
+*.png

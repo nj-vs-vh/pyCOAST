@@ -36,8 +36,8 @@ for dat_file in tqdm(dat_file_paths):
     reader = CorsikaReader(str(dat_file), verbosity=0)
     for run in reader.runs():
         for shower in run.showers():
-            # if shower.theta > THETA_MAX:
-            #     continue
+            if shower.theta > THETA_MAX:
+                continue
             showers_count += 1
 
             temp_file = temp_filename(dat_file.name, run, shower)

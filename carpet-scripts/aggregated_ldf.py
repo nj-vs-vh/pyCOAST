@@ -41,7 +41,7 @@ for dat_file in tqdm(dat_file_paths):
         for shower in run.showers():
             temp_file = temp_filename(dat_file.name, run, shower)
             with open(SHOWER_META_FNAME, 'a') as metadat_file:
-                metadat_file.write(f"{temp_file}, {shower.theta}, {shower.z_first}")
+                metadat_file.write(f"{temp_file}, {shower.theta}, {shower.z_first}\n")
 
             if shower.theta > THETA_MAX:
                 continue

@@ -57,6 +57,8 @@ class _CorsikaShower:
         self.theta = self._shower.GetTheta()
         self.phi = self._shower.GetPhi()
         self.z_first = self._shower.GetZFirst()
+        self.energy = shower.GetEnergy()
+        self.particle_id = shower.GetParticleId()
 
     def __str__(self) -> str:
         return (

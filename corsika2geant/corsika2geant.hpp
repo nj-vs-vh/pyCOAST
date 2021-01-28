@@ -21,11 +21,11 @@ struct ParticleData {
 };
 
 struct ShowerData {
-  ShowerMetadata _metadata;
-  std::vector<ParticleData> _particles;
+  ShowerMetadata metadata;
+  std::vector<ParticleData> particles;
 
-  ShowerData (ShowerMetadata metadata, std::vector<ParticleData> particles) :
-    _metadata(std::move(metadata)), _particles(std::move(particles)) {}
+  ShowerData (ShowerMetadata _metadata, std::vector<ParticleData> _particles) :
+    metadata(std::move(_metadata)), particles(std::move(_particles)) {}
 };
 
 

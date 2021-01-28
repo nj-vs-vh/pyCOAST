@@ -94,8 +94,6 @@ LoadShowerDataFromFile(string corsika_file_path, bool print_metadata, bool print
     
   }
 
-  cout << &result << endl;
-
   return result;
 
 };

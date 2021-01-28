@@ -1,10 +1,13 @@
-Simple program to extract particle data from CORSIKA dat files and print to stdout
+Simple tool to extract particle data from CORSIKA dat files
+
+# Stadalone
+
+`corsika2geant` may be used just to read data and print formatted output to stdout
 
 ## build
 
 ```bash
-cd corsika2geant
-make build
+make standalone
 ```
 
 ## run
@@ -15,3 +18,5 @@ make build
 # print every particle params
 ./corsika2geant_example -v <file path>
 ```
+
+# Shared library

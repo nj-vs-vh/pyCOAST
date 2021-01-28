@@ -1,5 +1,8 @@
 INCLUDE = -I${COAST_DIR}/include/
 LIBS = -L ${COAST_DIR}/lib/ -lCorsikaFileIO -lCorsikaIntern
 
-build:
-	g++ -v ${INCLUDE} corsika2geant_example.cpp ${LIBS} -o corsika2geant_example
+standalone:
+	g++ ${INCLUDE} corsika2geant.cpp ${LIBS} -o corsika2geant
+
+lib:
+	g++ -fPIC -shared ${INCLUDE} corsika2geant.cpp ${LIBS} -o corsika2geant.so

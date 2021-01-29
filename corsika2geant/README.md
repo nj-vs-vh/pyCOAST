@@ -47,9 +47,9 @@ make standalone
 
 ```bash
 # print only shower metadata
-./corsika2geant_example <file path>
+./corsika2geant <file path>
 # print every particle params
-./corsika2geant_example -v <file path>
+./corsika2geant -v <file path>
 ```
 
 ## Shared library

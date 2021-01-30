@@ -99,7 +99,7 @@ LoadShowerDataFromFile(string corsika_file_path, bool print_metadata, bool print
 };
 
 
-int main (int argc, char **argv) 
+int main (int argc, char **argv)
 {
   if (argc<2) {
     cout << "at least one command-line argument is expected (CORSIKA dat file path)" << endl;

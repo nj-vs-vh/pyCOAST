@@ -25,13 +25,13 @@ make install
 
 `COAST_DIR` environment variable must be set during all later buildings, it makes sense to place its definition somwhere in an activation script.
 
-To run `corsika2geant` you also need to modify `LD_LIBRARY_PATH` as follows:
+To run `corsika2geant` you would also need to modify `LD_LIBRARY_PATH` as follows (otherwise, dynamic linker doesn't know where to find COAST libs) :
 
 ```bash
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COAST_DIR/lib
 ```
 
-There are two 
+There are two modes of operation: standalone and as a library used from other code
 
 ## Stadalone
 
@@ -47,9 +47,9 @@ make standalone
 
 ```bash
 # print only shower metadata
-./corsika2geant_example <file path>
+./corsika2geant <file path>
 # print every particle params
-./corsika2geant_example -v <file path>
+./corsika2geant -v <file path>
 ```
 
 ## Shared library

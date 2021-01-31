@@ -187,3 +187,8 @@ src/coast_wrapper_ext/coast_swig_wrap.cpp
 *.png
 *.tar.gz
 experiments
+
+# binaries
+corsika2geant/corsika2geant
+corsika2geant/lib_usage/Ne_Nmu_counts
+corsika2geant/lib_usage/dump_to_text

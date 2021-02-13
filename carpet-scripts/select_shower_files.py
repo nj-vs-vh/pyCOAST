@@ -25,7 +25,7 @@ with open(FILES_METADATA_FILE, 'w') as meta, open(FILE_NAMES_FILE, 'w') as names
         if not dat_file.is_file():
             continue
 
-        reader = CorsikaReader(str(dat_file), verbosity=2)
+        reader = CorsikaReader(str(dat_file), verbosity=1)
 
         for run in reader.runs():
             for shower in run.showers():

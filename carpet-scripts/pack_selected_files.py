@@ -3,8 +3,8 @@
 from pathlib import Path
 
 
-FILE_LIST_FILENAME = Path('selected_photon_files.txt')
-DATA_DIR = Path('./data/photon-primary')
+FILE_LIST_FILENAME = Path('selected_proton_files.txt')
+DATA_DIR = Path('./data/proton-primary')
 
 total_size = 0
 

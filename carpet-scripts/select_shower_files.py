@@ -30,6 +30,8 @@ with open(FILES_METADATA_FILE, 'w') as meta, open(FILE_NAMES_FILE, 'w') as names
             for shower in run.showers():
                 if shower.energy > E_MIN and shower.energy < E_MAX and shower.theta < THETA_MAX:
                     names.write(f"{dat_file.name}\n")
-                    meta.write(f"{dat_file.name}\t{shower.particle_id}\t{shower.energy}\t{shower.theta}\t{shower.phi}\n")
+                    meta.write(
+                        f"{dat_file.name}\t{shower.particle_id}\t{shower.energy}\t{shower.theta}\t{shower.phi}\n"
+                    )
 
 print('done!')
